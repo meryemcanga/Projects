@@ -1,0 +1,14 @@
+class Solution {
+public:
+    /*
+    Time complexity = O(m+n) / linear -> where m is the number of elements in nums1, and n is the number of elements in nums2
+    Space complexity = O(n) -> as we don't erase nums2
+    */
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        for(int i=0; i<n; i++){
+            nums1[m+i] = nums2[i]; //add the numbers in nums2 to nums1 starting from the last element of nums1
+        }
+
+        sort(nums1.begin(), nums1.end()); 
+    }
+};
