@@ -1,0 +1,23 @@
+class Solution {
+public:
+
+    /*
+    Time complexity = O(n) -> where n is the number of elements in the vector nums
+    Space complexity = O(1) -> there is only two variables newly occupied which are c and i
+    */
+
+    int removeDuplicates(vector<int>& nums) {
+        int c = 1; //counter to count the number of repeating numbers
+        for(int i = 1; i < nums.size(); i++){ //this loop will iterate all the elements in nums
+            if(nums[i-1] != nums[i])  //if the number and the number before the number is not the same we keep it. 
+                c++;
+            if(nums[i-1] == nums[i]){ // erase the duplicated numbers
+            //we don't count here, we count the numbers after we deleted the duplicated ones, so that no rewriting
+                nums.erase(nums.begin() + i - 1); //nums.begin is the iterator for the first element. In order to delete
+                                                //the desired one, add i-1
+                i--; //after deleting a number, in order to not to skip an element we decrease the size of i by one
+            }
+        }
+        return c;
+    }
+};
