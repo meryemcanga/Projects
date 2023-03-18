@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        int i = 0;
+        int counter;
+
+        if(s.length()!= goal.length()) //If the lengths are different then return false immediately
+            return false;
+        
+        for(int j = 0;j < s.length() - 1; j++){
+            counter = 0; // this counter will count the right number of chars
+            for(i = 0; i < s.length(); i++){
+                if(s[i] == goal[(i+j) % s.length()]){ // NOTE: please write the bottom note for this operation
+                    counter++;
+                }
+            }
+            if(counter == s.length()) // if the number of chars in the rigth place is equal to the size then all of them are correct
+                return true; 
+        }
+    return false;
+    }
