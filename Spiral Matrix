@@ -1,0 +1,56 @@
+class Solution {
+public:
+    /*
+    Time complexity = O(n^2) -> as we will write n*n numbers
+    Space compelxity = O(n^2) -> we need n*n spaces to fill. thats why the matrix we created will occupy n*n much space
+    */
+
+    vector<vector<int>> generateMatrix(int n) {
+        int e = (n * n) - 1; //this is the stop value meaning the end of the matrix
+        int count = 0;
+        int value = 1;
+        vector<vector<int>>a(n, vector<int>(n,0));
+
+        int firstrow = 0, firstcol = 0, lastrow = n - 1, lastcol = n - 1;
+
+        while(count <= e) //when achieved the last number of the matrix, it stops
+        {
+            //this will generate the first row
+            for(int i = firstcol; count <= e && i<= lastcol; i++) 
+            {
+                a[firstrow][i] = value; 
+                count++;
+                value++;
+            }
+            firstrow++; // we skip the first row meaning that the we will think the next row is like the new first row as we filled this row
+
+            //this will generate the last column
+            for(int i = firstrow; count <= e && i <= lastrow; i++) 
+            {
+                a[i][lastcol] = value;
+                count++;
+                value++;
+            }
+            lastcol--; // we skip the last column meaning that the we will think the column befor this is like the new last column as we filled this column
+
+            // this will generate the last row
+            for(int i= lastcol;count <= e && i>=firstcol;i--)
+            {
+                a[lastrow][i]= value;
+                count++;
+                value++;
+            }
+            lastrow--;
+
+            //this will generate the first column
+            for(int i= lastrow;count <= e && i>= firstrow;i--) 
+            {
+                a[i][firstcol]=value;
+                count++;
+                value++;
+            }
+            firstcol++;
+        }
+        return a;
+    }
+};
