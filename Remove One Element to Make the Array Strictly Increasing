@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+class Solution {
+public:
+
+    /*
+    Time Complexity: O(n) -> where n is the numebr of elements in the vector -> linear
+    Space Complexity: O(1) -> no new space occupied -> constant
+    */
+    bool checkforthis(vector<int>& a, int n){ //n is the index of the element that we ignore
+        int k = 0; // this will hold the value of the number before the index
+        for(int i = 0; i < a.size(); i++){
+            if(i==n) // skip the element that index points at
+                continue;
+            if(k >= a[i]) // if the previous element is bigger than this number return false
+                return false;
+            k = a[i]; // update the previous number
+        }
+        return true;
+    }
+
+    /*
+    Time Complexity: O(n) -> where n is the numebr of elements in the vector -> linear
+    Space Complexity: O(1) -> no new space occupied -> constant
+    */
+    bool checkallelements(vector<int>& a){ // this function checks if all the elements in the vector are same
+        if(a.size() <= 2){
+            return false;
+        }
+        for(int i = 0; i < a.size() - 1; i++){
+            if(a[i] == a[i + 1]) // if they are all same, return true
+                return true;
+        }
+        return false; // if they are not same exit the funciton
+    }
+
+    /*
+    Time Complexity: O(n^2) -> where n is the numebr of elements in the vector
+    Space Complexity: O(1) -> no new space occupied -> constant
+    */
+    bool canBeIncreasing(vector<int>& nums) {
+        int n = nums.size();
+        if(checkallelements(nums) == true) // if they are all the same elements return false
+            return false;
+        int i = 0; //index to ignore one element at a time
+        for(int i = 0; i < n; i++){
+            if(checkforthis(nums, i) == true)
+                return true;
+        }
+        /*do{
+            if(checkforthis(nums, i) == true)
+                return true;
+            i++;
+        } while(i < b - 2);*/
+        return false;
+    }
+};
