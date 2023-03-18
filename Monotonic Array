@@ -1,0 +1,20 @@
+class Solution {
+public:
+    /*
+    Time Complexity: O(n) -> where n is the number of elements in the vector 
+    Space Complexity: O(1) -> no new space occupied (other than variables a and b which are ignored because they are constant too)
+    */
+    bool isMonotonic(vector<int>& nums) {
+        int a = 0; // a counts when the numbers are increasing
+        int b = 0; // b counts when the numbers are decreasing
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i - 1] >= nums[i]) // compare the elements that are side by side if they increase increase a
+                a++;
+            if(nums[i - 1] <= nums[i]) // compare the elements that are side by side if they decrease increase b
+                b++;
+        }
+        if(a == nums.size() - 1 || b == nums.size() - 1) // if they equal to one less of the number of elements in the vector (meaning that all the elements fulfill) then nums is monotonic
+            return true;
+        return false;
+    }
+};
